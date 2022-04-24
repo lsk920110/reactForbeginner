@@ -13,17 +13,15 @@
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
 <script type="text/babel">
-    const root = document.getElementById("root");
     const App =()=> {
-    const[counter,modifier] = React.useState(0);//react 의 state 객체화, 초기값은 0인 변수, state 타입의 변수에 return 해 줄 함수도 선언(이름만)
-    const onClick = () => { 
-        modifier(counter + 1);
-
-    }
-
-    const onClick2 = () => {
-        modifier(counter + 10);
-    }
+        const[counter,setCounter] = React.useState(0);//react 의 state 객체화, 초기값은 0인 변수, 객체화된 state 타입 변수를 컨트롤 할 함수의 선언 
+        const onClick = () => { 
+            setCounter(counter + 1);
+        }
+        const onClick2 = () => {
+            // setCounter(counter + 10);
+            setCounter((current)=>current + 10);
+        }
 
     return(
         <div>
@@ -32,9 +30,10 @@
             <button onClick={onClick2}>Click me@</button>
             
             </div>
-        );
+            );
     }
-            
+    
+    const root = document.getElementById("root");
     ReactDOM.render(<App />,root);
 </script>
 
